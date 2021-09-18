@@ -8,20 +8,21 @@ class Header extends Component {
 
     this.state = {
       isLoading: true,
+      user: '',
     };
   }
 
   componentDidMount() {
-    getUser().then(() => {
-      this.setState({ isLoading: false });
+    getUser().then((user) => {
+      this.setState({ isLoading: false, user });
     });
   }
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, user } = this.state;
     return (
       <div data-testid="header-component">
-        { isLoading && <Loading /> }
+        { isLoading ? <Loading /> : <h1 data-testid="header-user-name">{user.name}</h1> }
       </div>
     );
   }
