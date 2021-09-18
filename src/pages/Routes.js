@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import Login from '../components/Login';
+import Search from '../components/Search';
 
 class Routes extends Component {
   render() {
@@ -8,7 +9,7 @@ class Routes extends Component {
       <div>
         <Switch>
           <Route exact path="/" component={ Login } />
-          {/* <Route path="/search" component={ Search } /> */}
+          <Route path="/search" component={ Search } />
           {/* <Route path="/album/id" component={ Album } />
           <Route path="/favorites" component={ Favorites } />
           <Route path="/profile/edit" component={ ProfileEdit } />
