@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import { createUser } from '../services/userAPI';
+import Loading from './Loading';
 
 class Login extends Component {
   constructor() {
     super();
 
     this.state = {
+      isLoading: false,
       disabled: true,
       userName: '',
+      isRedirect: false,
     };
   }
 
@@ -18,8 +22,22 @@ class Login extends Component {
     }
   }
 
-  render() {
-    const { disabled, userName } = this.state;
+  handleClick = () => {
+    this.setState({
+      isLoading: true,
+    });
+    const { userName } = this.state;
+    createUser({ name: userName })
+      .then(() => {
+        this.setState({
+          isLoading: false,
+          isRedirect: true,
+        });
+      });
+  }
+
+  renderForm = () => {
+    const { disabled } = this.state;
     return (
       <div data-testid="page-login">
         <input
@@ -30,11 +48,23 @@ class Login extends Component {
           type="button"
           disabled={ disabled }
           data-testid="login-submit-button"
-          onClick={ () => createUser({ name: userName }) }
+          onClick={ this.handleClick }
         >
           Entrar
         </button>
       </div>
+    );
+  }
+
+  render() {
+    const { isLoading, isRedirect } = this.state;
+
+    if (isLoading) return <Loading />;
+
+    if (isRedirect) return <Redirect to="/search" />;
+
+    return (
+      this.renderForm()
     );
   }
 }
