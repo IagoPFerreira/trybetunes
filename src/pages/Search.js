@@ -6,6 +6,8 @@ class Search extends Component {
     return (
       <div data-testid="page-search">
         <Header />
+        <input type="text" data-testid="search-artist-input" />
+        <button type="button" data-testid="search-artist-button">Pesquisar</button>
       </div>
     );
   }
