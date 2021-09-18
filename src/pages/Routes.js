@@ -4,6 +4,7 @@ import Album from '../components/Album';
 import Favorites from '../components/Favorites';
 import Login from '../components/Login';
 import Profile from '../components/Profile';
+import ProfileEdit from '../components/ProfileEdit';
 import Search from '../components/Search';
 
 class Routes extends Component {
@@ -15,7 +16,7 @@ class Routes extends Component {
           <Route path="/search" component={ Search } />
           <Route path="/album/:id" component={ Album } />
           <Route path="/favorites" component={ Favorites } />
-          {/* <Route path="/profile/edit" component={ ProfileEdit } /> */}
+          <Route path="/profile/edit" component={ ProfileEdit } />
           <Route path="/profile" component={ Profile } />
           {/* <Route path="*" component={ NotFound } /> */}
         </Switch>
