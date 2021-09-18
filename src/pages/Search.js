@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from '../components/Button';
 import Header from '../components/Header';
 
 class Search extends Component {
@@ -27,13 +28,12 @@ class Search extends Component {
           data-testid="search-artist-input"
           onChange={ this.checkNameLength }
         />
-        <button
-          type="button"
-          data-testid="search-artist-button"
+        <Button
           disabled={ disabled }
-        >
-          Pesquisar
-        </button>
+          onClick={ console.log('clicou') }
+          testId="search-artist-button"
+          text="Pesquisar"
+        />
       </div>
     );
   }

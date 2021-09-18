@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
+import Button from '../components/Button';
 
 class Login extends Component {
   constructor() {
@@ -44,14 +45,12 @@ class Login extends Component {
           data-testid="login-name-input"
           onChange={ this.checkNameLength }
         />
-        <button
-          type="button"
+        <Button
           disabled={ disabled }
-          data-testid="login-submit-button"
           onClick={ this.handleClick }
-        >
-          Entrar
-        </button>
+          testId="login-submit-button"
+          text="Entrar"
+        />
       </div>
     );
   }
