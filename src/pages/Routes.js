@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
-import Album from '../components/Album';
-import Favorites from '../components/Favorites';
-import Login from '../components/Login';
-import NotFound from '../components/NotFound';
-import Profile from '../components/Profile';
-import ProfileEdit from '../components/ProfileEdit';
-import Search from '../components/Search';
+import Album from './Album';
+import Favorites from './Favorites';
+import Login from './Login';
+import NotFound from './NotFound';
+import Profile from './Profile';
+import ProfileEdit from './ProfileEdit';
+import Search from './Search';
 
 class Routes extends Component {
   render() {
