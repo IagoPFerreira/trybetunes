@@ -2,14 +2,47 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
+import AlbumCard from '../components/AlbumCard';
 
 class Album extends Component {
-  renderMusics = () => {
+  constructor() {
+    super();
+
+    this.state = {
+      musics: '',
+    };
+  }
+
+  componentDidMount() {
     const { match: { params: { id } } } = this.props;
-    getMusics(id).then((results) => {
-      console.log(results);
-    });
-    return (<>Oi</>);
+    getMusics(id).then((musics) => this.setState({ musics }));
+  }
+
+  renderMusics = () => {
+    const { musics } = this.state;
+    if (musics) {
+      return (
+        musics
+          .map(({ artistName, collectionName, artworkUrl100 }, index) => {
+            if (index === 0) {
+              return (
+                <AlbumCard
+                  src={ artworkUrl100 }
+                  alt={ collectionName }
+                  artistName={ artistName }
+                  collectionName={ collectionName }
+                  nameId="artist-name"
+                  albumId="album-name"
+                />
+              );
+            }
+            return (
+              ''
+            );
+          })
+
+      );
+    }
   }
 
   render() {
