@@ -53,7 +53,11 @@ class Search extends Component {
 
     return (artistAlbuns
       .map(({ collectionId, artistName, collectionName, artworkUrl100 }) => (
-        <Link key={ collectionId } to={ `/album/${collectionId}` }>
+        <Link
+          key={ collectionId }
+          to={ `/album/${collectionId}` }
+          data-testid={ `link-to-album-${collectionId}` }
+        >
           <img src={ artworkUrl100 } alt={ collectionName } />
           <h3>{artistName}</h3>
           <h4>{collectionName}</h4>
