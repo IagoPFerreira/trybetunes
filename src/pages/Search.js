@@ -22,13 +22,13 @@ class Search extends Component {
   checkNameLength = ({ target: { value } }) => {
     const minimunNameLength = 2;
 
-    this.setState({ artistName: value });
+    const artistName = value.split(' ')
+      .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
+      .join(' ');
+
+    this.setState({ artistName });
 
     if (value.length >= minimunNameLength) {
-      const artistName = value.split(' ')
-        .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
-        .join(' ');
-
       this.setState({ disabled: false });
       this.name = artistName;
     }
