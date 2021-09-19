@@ -25,7 +25,7 @@ class Album extends Component {
       return (
         musics
           .map((
-            { artistName, collectionName, artworkUrl100, trackName, previewUrl },
+            { artistName, collectionName, artworkUrl100, trackName, trackId, previewUrl },
             index,
           ) => {
             if (index === 0) {
@@ -46,6 +46,8 @@ class Album extends Component {
                 key={ index }
                 trackName={ trackName }
                 previewUrl={ previewUrl }
+                trackId={ trackId }
+                index={ index }
               />
             );
           })
