@@ -11,8 +11,11 @@ class Search extends Component {
     this.state = {
       isLoading: false,
       disabled: true,
-      artistName: '',
+      artistName: null,
+      artistAlbuns: null,
     };
+
+    this.name = '';
   }
 
   checkNameLength = ({ target: { value } }) => {
@@ -22,26 +25,46 @@ class Search extends Component {
         .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
         .join(' ');
       this.setState({ disabled: false, artistName });
+      this.name = artistName;
     }
   }
 
   handleSearch = () => {
     const { artistName } = this.state;
     this.setState({ isLoading: true });
-    console.log(artistName);
-    searchAlbumsAPI(artistName).then(() => {
+    searchAlbumsAPI(artistName).then((result) => {
       this.setState({
         isLoading: false,
+        artistAlbuns: result,
+        artistName: '',
+      });
+      this.setState({
+        artistName: null,
       });
     });
   }
 
+  renderAlbuns = () => {
+    const { name, state: { artistAlbuns } } = this;
+    if (artistAlbuns) {
+      return (
+        <>
+          <h2>{`Resultado de álbuns de: ${name}`}</h2>
+          { artistAlbuns.map(() => (
+            ''
+          ))}
+        </>
+      );
+    }
+  }
+
   render() {
-    const { isLoading, disabled } = this.state;
+    const { isLoading, disabled, artistName } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
         <input
+          value={ artistName }
           type="text"
           data-testid="search-artist-input"
           onChange={ this.checkNameLength }
@@ -52,7 +75,7 @@ class Search extends Component {
           testId="search-artist-button"
           text="Pesquisar"
         />
-        { isLoading ? <Loading /> : <p>Opa</p> }
+        { isLoading ? <Loading /> : this.renderAlbuns() }
       </div>
     );
   }
