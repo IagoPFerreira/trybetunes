@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import AlbumCard from '../components/AlbumCard';
 
 class Search extends Component {
   constructor() {
@@ -58,9 +59,14 @@ class Search extends Component {
           to={ `/album/${collectionId}` }
           data-testid={ `link-to-album-${collectionId}` }
         >
-          <img src={ artworkUrl100 } alt={ collectionName } />
-          <h3>{artistName}</h3>
-          <h4>{collectionName}</h4>
+          <AlbumCard
+            src={ artworkUrl100 }
+            alt={ collectionName }
+            artistName={ artistName }
+            collectionName={ collectionName }
+            nameId=""
+            albumId=""
+          />
         </Link>
       )));
   }
