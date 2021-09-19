@@ -49,20 +49,27 @@ class Search extends Component {
   }
 
   renderAlbuns = () => {
-    const { name, state: { artistAlbuns } } = this;
+    const { artistAlbuns } = this.state;
 
+    return (artistAlbuns
+      .map(({ collectionId, artistName, collectionName, artworkUrl100 }) => (
+        <Link key={ collectionId } to={ `/album/${collectionId}` }>
+          <img src={ artworkUrl100 } alt={ collectionName } />
+          <h3>{artistName}</h3>
+          <h4>{collectionName}</h4>
+        </Link>
+      )));
+  }
+
+  checkAlbuns = () => {
+    const { name, state: { artistAlbuns } } = this;
     if (artistAlbuns) {
       return (
         <>
           <h2>{`Resultado de álbuns de: ${name}`}</h2>
-          { artistAlbuns
-            .map(({ collectionId, artistName, collectionName, artworkUrl100 }) => (
-              <Link key={ collectionId } to={ `/album/${collectionId}` }>
-                <img src={ artworkUrl100 } alt={ collectionName } />
-                <h3>{artistName}</h3>
-                <h4>{collectionName}</h4>
-              </Link>
-            ))}
+          { artistAlbuns.length > 0
+            ? this.renderAlbuns()
+            : <h3>Nenhum álbum foi encontrado</h3> }
         </>
       );
     }
@@ -86,7 +93,7 @@ class Search extends Component {
           testId="search-artist-button"
           text="Pesquisar"
         />
-        { isLoading ? <Loading /> : this.renderAlbuns() }
+        { isLoading ? <Loading /> : this.checkAlbuns() }
       </div>
     );
   }
