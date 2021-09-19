@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import AlbumCard from '../components/AlbumCard';
+import MusicCard from '../components/MusicCard';
 
 class Album extends Component {
   constructor() {
@@ -23,7 +24,10 @@ class Album extends Component {
     if (musics) {
       return (
         musics
-          .map(({ artistName, collectionName, artworkUrl100 }, index) => {
+          .map((
+            { artistName, collectionName, artworkUrl100, trackName, previewUrl },
+            index,
+          ) => {
             if (index === 0) {
               return (
                 <AlbumCard
@@ -33,14 +37,18 @@ class Album extends Component {
                   collectionName={ collectionName }
                   nameId="artist-name"
                   albumId="album-name"
+                  key={ index }
                 />
               );
             }
             return (
-              ''
+              <MusicCard
+                key={ index }
+                trackName={ trackName }
+                previewUrl={ previewUrl }
+              />
             );
           })
-
       );
     }
   }
