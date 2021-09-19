@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
@@ -11,7 +12,7 @@ class Search extends Component {
     this.state = {
       isLoading: false,
       disabled: true,
-      artistName: null,
+      artistName: '',
       artistAlbuns: null,
     };
 
@@ -20,39 +21,48 @@ class Search extends Component {
 
   checkNameLength = ({ target: { value } }) => {
     const minimunNameLength = 2;
+
+    this.setState({ artistName: value });
+
     if (value.length >= minimunNameLength) {
       const artistName = value.split(' ')
         .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
         .join(' ');
-      this.setState({ disabled: false, artistName });
+
+      this.setState({ disabled: false });
       this.name = artistName;
     }
   }
 
   handleSearch = () => {
     const { artistName } = this.state;
+
     this.setState({ isLoading: true });
+
     searchAlbumsAPI(artistName).then((result) => {
       this.setState({
         isLoading: false,
         artistAlbuns: result,
         artistName: '',
       });
-      this.setState({
-        artistName: null,
-      });
     });
   }
 
   renderAlbuns = () => {
     const { name, state: { artistAlbuns } } = this;
+
     if (artistAlbuns) {
       return (
         <>
           <h2>{`Resultado de álbuns de: ${name}`}</h2>
-          { artistAlbuns.map(() => (
-            ''
-          ))}
+          { artistAlbuns
+            .map(({ collectionId, artistName, collectionName, artworkUrl100 }) => (
+              <Link key={ collectionId } to={ `/album/${collectionId}` }>
+                <img src={ artworkUrl100 } alt={ collectionName } />
+                <h3>{artistName}</h3>
+                <h4>{collectionName}</h4>
+              </Link>
+            ))}
         </>
       );
     }
@@ -60,6 +70,7 @@ class Search extends Component {
 
   render() {
     const { isLoading, disabled, artistName } = this.state;
+
     return (
       <div data-testid="page-search">
         <Header />
