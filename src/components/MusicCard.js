@@ -9,6 +9,7 @@ class MusicCard extends Component {
 
     this.state = {
       isLoading: false,
+      checked: false,
     };
   }
 
@@ -19,12 +20,16 @@ class MusicCard extends Component {
   }
 
   handleFavorite = ({ target: { checked } }) => {
+    this.setState({ checked });
     const { music } = this.props;
     return checked ? this.handleAddSong() : removeSong(music);
   }
 
   renderTrack = () => {
-    const { music: { trackName, previewUrl, trackId }, index } = this.props;
+    const {
+      props: { music: { trackName, previewUrl, trackId }, index },
+      state: { checked },
+    } = this;
     return (
       <div>
         <span>{trackName}</span>
@@ -38,7 +43,12 @@ class MusicCard extends Component {
           .
         </audio>
         <label data-testid={ `checkbox-music-${trackId}` } htmlFor={ index }>
-          <input type="checkbox" id={ index } onClick={ this.handleFavorite } />
+          <input
+            type="checkbox"
+            id={ index }
+            onClick={ this.handleFavorite }
+            defaultChecked={ checked }
+          />
         </label>
       </div>
     );
