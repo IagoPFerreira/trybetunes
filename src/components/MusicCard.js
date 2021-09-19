@@ -13,16 +13,30 @@ class MusicCard extends Component {
     };
   }
 
-  handleAddSong = () => {
-    this.setState({ isLoading: true });
-    const { music } = this.props;
-    addSong(music).then(() => this.setState({ isLoading: false }));
+  componentDidMount() {
+    this.checkLocalStorage();
+  }
+
+  checkLocalStorage = () => {
+    const checkStorage = JSON.parse(localStorage.getItem('favorite_songs'));
+    const { music: { trackName } } = this.props;
+    const some = checkStorage.some((item) => item.trackName === trackName);
+
+    this.setState({ checked: some });
+  }
+
+  handleSong = ({ target }, callback) => {
+    this.setState({ isLoading: true, checked: target.checked });
+
+    const { props: { music } } = this;
+
+    callback(music).then(() => this.setState({ isLoading: false }));
   }
 
   handleFavorite = ({ target: { checked } }) => {
     this.setState({ checked });
-    const { music } = this.props;
-    return checked ? this.handleAddSong() : removeSong(music);
+
+    return this.handleSong();
   }
 
   renderTrack = () => {
@@ -30,6 +44,7 @@ class MusicCard extends Component {
       props: { music: { trackName, previewUrl, trackId }, index },
       state: { checked },
     } = this;
+
     return (
       <div>
         <span>{trackName}</span>
@@ -46,8 +61,10 @@ class MusicCard extends Component {
           <input
             type="checkbox"
             id={ index }
-            onClick={ this.handleFavorite }
-            defaultChecked={ checked }
+            onChange={ (event) => (!checked
+              ? this.handleSong(event, addSong)
+              : this.handleSong(event, removeSong)) }
+            checked={ checked }
           />
         </label>
       </div>
