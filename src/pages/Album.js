@@ -25,7 +25,7 @@ class Album extends Component {
       return (
         musics
           .map((music, index) => {
-            const { artistName, collectionName, artworkUrl100 } = music;
+            const { artistName, collectionName, artworkUrl100, trackName } = music;
             if (index === 0) {
               return (
                 <AlbumCard
@@ -41,9 +41,8 @@ class Album extends Component {
             }
             return (
               <MusicCard
-                key={ index }
+                key={ trackName }
                 music={ music }
-                index={ index }
               />
             );
           })
