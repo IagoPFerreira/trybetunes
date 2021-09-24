@@ -22,12 +22,24 @@ class Profile extends Component {
     });
   }
 
+  renderUser = () => {
+    const { user: { description, email, image, name } } = this.state;
+    return (
+      <section className="user">
+        <img src={ image } alt={ name } data-testid="profile-image" />
+        <h2>{name}</h2>
+        <h3>{email}</h3>
+        <p>{description}</p>
+      </section>
+    );
+  }
+
   render() {
-    const { isLoading, user } = this.state;
+    const { isLoading } = this.state;
     return (
       <div data-testid="page-profile">
         <Header />
-        { isLoading ? <Loading /> : console.log(user) }
+        { isLoading ? <Loading /> : this.renderUser() }
       </div>
     );
   }
