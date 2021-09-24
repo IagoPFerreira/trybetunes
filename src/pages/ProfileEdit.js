@@ -9,16 +9,22 @@ class ProfileEdit extends Component {
 
     this.state = {
       isLoading: true,
-      user: null,
+      description: '',
+      email: '',
+      image: '',
+      name: '',
       disabled: true,
     };
   }
 
   componentDidMount() {
-    getUser().then((result) => {
+    getUser().then(({ description, email, image, name }) => {
       this.setState({
         isLoading: false,
-        user: result,
+        description,
+        email,
+        image,
+        name,
       });
     });
   }
@@ -30,7 +36,7 @@ class ProfileEdit extends Component {
   }
 
   renderForm = () => {
-    const { user: { description, email, image, name }, disabled } = this.state;
+    const { description, email, image, name, disabled } = this.state;
 
     return (
       <form>
@@ -41,6 +47,7 @@ class ProfileEdit extends Component {
             type="text"
             name="image"
             data-testid="edit-input-image"
+            onChange={ this.handleChange }
             value={ image }
           />
         </label>
