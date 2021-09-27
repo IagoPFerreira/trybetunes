@@ -29,10 +29,26 @@ class ProfileEdit extends Component {
     });
   }
 
+  ableButton = () => {
+    const { description, email, image, name } = this.state;
+    const regex = /\S+@\S+\.\S+/;
+
+    if (description && regex.test(email) && image && name) {
+      console.log('bão?');
+      return true;
+    }
+
+    return false;
+  }
+
   handleChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value,
     });
+
+    if (this.ableButton()) {
+      this.setState({ disabled: false });
+    }
   }
 
   renderForm = () => {
