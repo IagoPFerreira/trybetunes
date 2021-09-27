@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
@@ -29,13 +30,20 @@ class ProfileEdit extends Component {
     });
   }
 
+  componentDidUpdate() {
+    const { disabled } = this.state;
+    if (disabled) {
+      this.ableButton();
+    }
+  }
+
   ableButton = () => {
     const { description, email, image, name } = this.state;
     const regex = /\S+@\S+\.\S+/;
 
-    if (description && regex.test(email) && image && name) return true;
-
-    return false;
+    if (description && regex.test(email) && image && name) {
+      this.setState({ disabled: false });
+    }
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -43,17 +51,19 @@ class ProfileEdit extends Component {
       [name]: value,
     });
 
-    if (this.ableButton()) {
-      this.setState({ disabled: false });
-    }
+    this.ableButton();
   }
 
   handleClick = (event) => {
     event.preventDefault();
 
+    const { history } = this.props;
+
     const { description, email, image, name } = this.state;
 
     updateUser({ description, email, image, name });
+
+    history.push('/profile');
   }
 
   renderForm = () => {
@@ -129,5 +139,9 @@ class ProfileEdit extends Component {
     );
   }
 }
+
+ProfileEdit.propTypes = {
+  history: PropTypes.object,
+}.isRequired;
 
 export default ProfileEdit;
