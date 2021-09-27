@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
-import { getUser } from '../services/userAPI';
+import { getUser, updateUser } from '../services/userAPI';
 
 class ProfileEdit extends Component {
   constructor() {
@@ -33,10 +33,7 @@ class ProfileEdit extends Component {
     const { description, email, image, name } = this.state;
     const regex = /\S+@\S+\.\S+/;
 
-    if (description && regex.test(email) && image && name) {
-      console.log('bão?');
-      return true;
-    }
+    if (description && regex.test(email) && image && name) return true;
 
     return false;
   }
@@ -49,6 +46,14 @@ class ProfileEdit extends Component {
     if (this.ableButton()) {
       this.setState({ disabled: false });
     }
+  }
+
+  handleClick = (event) => {
+    event.preventDefault();
+
+    const { description, email, image, name } = this.state;
+
+    updateUser({ description, email, image, name });
   }
 
   renderForm = () => {
@@ -106,6 +111,7 @@ class ProfileEdit extends Component {
           type="submit"
           data-testid="edit-button-save"
           disabled={ disabled }
+          onClick={ this.handleClick }
         >
           Salvar
         </button>
