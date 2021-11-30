@@ -45,11 +45,14 @@ class Login extends Component {
   renderForm = () => {
     const { disabled } = this.state;
     return (
-      <div data-testid="page-login">
+      <section data-testid="page-login" className="login-area">
         <input
           data-testid="login-name-input"
           onChange={ this.checkNameLength }
           onKeyDown={ this.checkKey }
+          className="email-input"
+          id="email-input"
+          placeholder="exemplo@exemplo.com"
         />
         <Button
           disabled={ disabled }
@@ -57,7 +60,7 @@ class Login extends Component {
           testId="login-submit-button"
           text="Entrar"
         />
-      </div>
+      </section>
     );
   }
 
