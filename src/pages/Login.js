@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
 import Button from '../components/Button';
+import checkKey from '../services/checkKey';
 
 class Login extends Component {
   constructor() {
@@ -37,11 +38,6 @@ class Login extends Component {
       });
   }
 
-  checkKey = ({ keyCode }) => {
-    const enterKeyCode = 13;
-    if (keyCode === enterKeyCode) this.handleClick();
-  }
-
   renderForm = () => {
     const { disabled } = this.state;
     return (
@@ -49,7 +45,7 @@ class Login extends Component {
         <input
           data-testid="login-name-input"
           onChange={ this.checkNameLength }
-          onKeyDown={ this.checkKey }
+          onKeyDown={ (e) => checkKey(e, this.handleClick) }
           className="email-input"
           id="email-input"
           placeholder="exemplo@exemplo.com"
