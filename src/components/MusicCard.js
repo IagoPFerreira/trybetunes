@@ -37,11 +37,11 @@ class MusicCard extends Component {
     callback(music).then(() => this.setState({ isLoading: false }));
   }
 
-  handleFavorite = ({ target: { checked } }) => {
-    this.setState({ checked });
+  // handleFavorite = ({ target: { checked } }) => {
+  //   this.setState({ checked });
 
-    return this.handleSong();
-  }
+  //   return this.handleSong();
+  // }
 
   renderTrack = () => {
     const {
