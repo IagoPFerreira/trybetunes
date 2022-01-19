@@ -4,6 +4,7 @@ import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
 import Button from '../components/Button';
 import checkKey from '../services/checkKey';
+import logo from '../images/music.png';
 
 class Login extends Component {
   constructor() {
@@ -42,6 +43,11 @@ class Login extends Component {
     const { disabled } = this.state;
     return (
       <section data-testid="page-login" className="login-area">
+        <img
+          src={ logo }
+          alt="Nota musical colorida dentro de um círculo branco"
+          className="logo"
+        />
         <input
           data-testid="login-name-input"
           onChange={ this.checkNameLength }

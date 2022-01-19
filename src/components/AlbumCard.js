@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 class AlbumCard extends Component {
   render() {
-    const { src, alt, artistName, collectionName, nameId, albumId } = this.props;
+    const {
+      src, alt, artistName, collectionName, nameId, albumId, className } = this.props;
     return (
-      <>
-        <img src={ src } alt={ alt } />
-        <h3 data-testid={ nameId }>{artistName}</h3>
-        <h4 data-testid={ albumId }>{collectionName}</h4>
-      </>
+      <section className={ className }>
+        <img src={ src } alt={ alt } className="card-img" />
+        <h3 data-testid={ nameId } className="card-title">{artistName}</h3>
+        <h4 data-testid={ albumId } className="card-text">{collectionName}</h4>
+      </section>
     );
   }
 }
@@ -21,6 +22,7 @@ AlbumCard.propTypes = {
   collectionName: PropTypes.string,
   nameId: PropTypes.string,
   albumId: PropTypes.string,
+  className: PropTypes.string,
 }.isRequired;
 
 export default AlbumCard;

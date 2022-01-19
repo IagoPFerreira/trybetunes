@@ -32,32 +32,35 @@ class Favorites extends Component {
         }));
       }
     });
-  }
+  };
 
   handleChange = () => {
     this.setState({ isLoading: true });
-  }
+  };
 
   renderMusics = () => {
     const { musics } = this.state;
 
-    return musics
-      .map((music) => (
+    if (musics) {
+      return musics.map((music) => (
         <MusicCard
           key={ music.trackName }
           music={ music }
           onChange={ this.handleChange }
         />
       ));
-  }
+    }
+  };
 
   render() {
-    const { isLoading } = this.state;
+    const { musics } = this.state;
     return (
-      <div data-testid="page-favorites">
+      <section data-testid="page-favorites" className="page-favorites page">
         <Header />
-        { isLoading ? <Loading /> : this.renderMusics() }
-      </div>
+        <section className="songs-container">
+          {!musics ? <Loading /> : this.renderMusics()}
+        </section>
+      </section>
     );
   }
 }

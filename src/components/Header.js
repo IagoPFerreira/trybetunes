@@ -22,21 +22,41 @@ class Header extends Component {
   renderHeader = () => {
     const { user } = this.state;
     return (
-      <header>
-        <h1 data-testid="header-user-name">{user.name}</h1>
-        <Link to="/search" data-testid="link-to-search">Search</Link>
-        <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
-        <Link to="/profile" data-testid="link-to-profile">Profile</Link>
-      </header>
+      <>
+        <h1 data-testid="header-user-name" className="user-name">{user.name}</h1>
+        <nav className="navbar">
+          <Link
+            to="/search"
+            data-testid="link-to-search"
+            className="nav-link"
+          >
+            Search
+          </Link>
+          <Link
+            to="/favorites"
+            data-testid="link-to-favorites"
+            className="nav-link"
+          >
+            Favorites
+          </Link>
+          <Link
+            to="/profile"
+            data-testid="link-to-profile"
+            className="nav-link"
+          >
+            Profile
+          </Link>
+        </nav>
+      </>
     );
   }
 
   render() {
     const { isLoading } = this.state;
     return (
-      <div data-testid="header-component">
+      <header data-testid="header-component" className="header-component">
         { isLoading ? <Loading /> : this.renderHeader() }
-      </div>
+      </header>
     );
   }
 }

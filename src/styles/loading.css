@@ -1,7 +1,7 @@
 .spinner {
   animation: spin 1s linear infinite;
   border: 8px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #22a6b3;
+  border-left-color: rgb(43, 45, 128);
   border-radius: 50%;
   height: 60px;
   left: 45%;

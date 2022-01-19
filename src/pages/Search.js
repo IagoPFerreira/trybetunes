@@ -5,6 +5,7 @@ import Loading from '../components/Loading';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import AlbumCard from '../components/AlbumCard';
+import checkKey from '../services/checkKey';
 
 class Search extends Component {
   constructor() {
@@ -51,24 +52,32 @@ class Search extends Component {
 
   renderAlbuns = () => {
     const { artistAlbuns } = this.state;
+    return (
+      <section className="albuns-group">
+        {
+          artistAlbuns
+            .map(({ collectionId, artistName, collectionName, artworkUrl100 }) => (
+              <Link
+                key={ collectionId }
+                to={ `/album/${collectionId}` }
+                data-testid={ `link-to-album-${collectionId}` }
+                className="album-link"
+              >
+                <AlbumCard
+                  src={ artworkUrl100 }
+                  alt={ collectionName }
+                  artistName={ artistName }
+                  collectionName={ collectionName }
+                  nameId=""
+                  albumId=""
+                  className="mini-card"
+                />
+              </Link>
+            ))
+        }
 
-    return (artistAlbuns
-      .map(({ collectionId, artistName, collectionName, artworkUrl100 }) => (
-        <Link
-          key={ collectionId }
-          to={ `/album/${collectionId}` }
-          data-testid={ `link-to-album-${collectionId}` }
-        >
-          <AlbumCard
-            src={ artworkUrl100 }
-            alt={ collectionName }
-            artistName={ artistName }
-            collectionName={ collectionName }
-            nameId=""
-            albumId=""
-          />
-        </Link>
-      )));
+      </section>
+    );
   }
 
   checkAlbuns = () => {
@@ -89,13 +98,16 @@ class Search extends Component {
     const { isLoading, disabled, artistName } = this.state;
 
     return (
-      <div data-testid="page-search">
+      <section data-testid="page-search" className="search-area">
         <Header />
         <input
           value={ artistName }
           type="text"
           data-testid="search-artist-input"
           onChange={ this.checkNameLength }
+          onKeyDown={ (e) => checkKey(e, this.handleSearch) }
+          className="search-input"
+          placeholder="Nome da banda/artista"
         />
         <Button
           disabled={ disabled }
@@ -104,7 +116,7 @@ class Search extends Component {
           text="Pesquisar"
         />
         { isLoading ? <Loading /> : this.checkAlbuns() }
-      </div>
+      </section>
     );
   }
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser } from '../services/userAPI';
+import defaulImage from '../images/blankProfilePicture.jpg';
 
 class Profile extends Component {
   constructor() {
@@ -26,8 +27,13 @@ class Profile extends Component {
   renderUser = () => {
     const { user: { description, email, image, name } } = this.state;
     return (
-      <section className="user">
-        <img src={ image } alt={ name } data-testid="profile-image" />
+      <section className="user-infos">
+        <img
+          src={ image || defaulImage }
+          alt={ name }
+          data-testid="profile-image"
+          className="user-image"
+        />
         <Link to="profile/edit">Editar perfil</Link>
         <h2>{name}</h2>
         <h3>{email}</h3>
@@ -39,10 +45,10 @@ class Profile extends Component {
   render() {
     const { isLoading } = this.state;
     return (
-      <div data-testid="page-profile">
+      <section data-testid="page-profile" className="page-profile page">
         <Header />
         { isLoading ? <Loading /> : this.renderUser() }
-      </div>
+      </section>
     );
   }
 }

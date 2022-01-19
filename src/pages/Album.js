@@ -16,7 +16,25 @@ class Album extends Component {
 
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
-    getMusics(id).then((musics) => this.setState({ musics }));
+    getMusics(id, this.props).then((musics) => this.setState({ musics }));
+  }
+
+  renderAlbumCard = () => {
+    const { musics } = this.state;
+    if (musics) {
+      const { artistName, collectionName, artworkUrl100 } = musics[0];
+      return (
+        <AlbumCard
+          src={ artworkUrl100 }
+          alt={ collectionName }
+          artistName={ artistName }
+          collectionName={ collectionName }
+          nameId="artist-name"
+          albumId="album-name"
+          className="album-card"
+        />
+      );
+    }
   }
 
   renderMusics = () => {
@@ -25,26 +43,11 @@ class Album extends Component {
       return (
         musics
           .map((music, index) => {
-            const { artistName, collectionName, artworkUrl100, trackName } = music;
-            if (index === 0) {
-              return (
-                <AlbumCard
-                  src={ artworkUrl100 }
-                  alt={ collectionName }
-                  artistName={ artistName }
-                  collectionName={ collectionName }
-                  nameId="artist-name"
-                  albumId="album-name"
-                  key={ index }
-                />
-              );
-            }
-            return (
-              <MusicCard
-                key={ trackName }
-                music={ music }
-              />
-            );
+            const { trackName } = music;
+            return (index !== 0 && <MusicCard
+              key={ trackName }
+              music={ music }
+            />);
           })
       );
     }
@@ -52,10 +55,13 @@ class Album extends Component {
 
   render() {
     return (
-      <div data-testid="page-album">
+      <main data-testid="page-album" className="page-album page">
         <Header />
-        { this.renderMusics() }
-      </div>
+        { this.renderAlbumCard() }
+        <section className="songs-container">
+          { this.renderMusics() }
+        </section>
+      </main>
     );
   }
 }

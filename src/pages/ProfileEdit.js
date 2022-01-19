@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
+import defaulImage from '../images/blankProfilePicture.jpg';
+import Button from '../components/Button';
 
 class ProfileEdit extends Component {
   constructor() {
@@ -20,12 +22,14 @@ class ProfileEdit extends Component {
 
   componentDidMount() {
     getUser().then(({ description, email, image, name }) => {
+      const regex = /\S+@\S+\.\S+/;
+      const isNameEmail = regex.test(name);
       this.setState({
         isLoading: false,
         description,
-        email,
+        email: !isNameEmail ? email : name,
         image,
-        name,
+        name: isNameEmail ? '' : name,
       });
     });
   }
@@ -70,61 +74,65 @@ class ProfileEdit extends Component {
     const { description, email, image, name, disabled } = this.state;
 
     return (
-      <form>
-        <img src={ image } alt={ name } />
-        <label htmlFor="user-image">
-          <input
-            id="user-image"
-            type="text"
-            name="image"
-            data-testid="edit-input-image"
-            onChange={ this.handleChange }
-            value={ image }
-          />
-        </label>
-        <label htmlFor="user-name">
-          Nome
-          <h4>Fique a vontade para usar seu nome social</h4>
-          <input
-            id="user-name"
-            name="name"
-            data-testid="edit-input-name"
-            onChange={ this.handleChange }
-            value={ name }
-            placeholder="Exemplo Exemplo"
-          />
-        </label>
-        <label htmlFor="user-email">
-          Email
-          <h4>Escolha um e-mail que você consulte diariamente</h4>
-          <input
-            id="user-email"
-            name="email"
-            data-testid="edit-input-email"
-            onChange={ this.handleChange }
-            value={ email }
-            placeholder="Exemplo Exemplo"
-          />
-        </label>
-        <label htmlFor="user-description">
-          Descrição
-          <textarea
-            id="user-description"
-            name="description"
-            data-testid="edit-input-description"
-            onChange={ this.handleChange }
-            value={ description }
-            placeholder="Exemplo Exemplo"
-          />
-        </label>
-        <button
-          type="submit"
-          data-testid="edit-button-save"
+      <form className="user-form">
+        <img src={ image || defaulImage } alt={ name } className="user-image" />
+        <fieldset className="labels-container">
+          <label htmlFor="user-image">
+            Imagem
+            <input
+              id="user-image"
+              type="text"
+              name="image"
+              data-testid="edit-input-image"
+              onChange={ this.handleChange }
+              value={ image }
+              placeholder="Url para sua foto de perfil"
+              className="form-field"
+            />
+          </label>
+          <label htmlFor="user-name">
+            Nome
+            <input
+              id="user-name"
+              name="name"
+              data-testid="edit-input-name"
+              onChange={ this.handleChange }
+              value={ name }
+              placeholder="Exemplo Exemplo"
+              className="form-field"
+            />
+          </label>
+          <label htmlFor="user-email">
+            Email
+            <input
+              id="user-email"
+              name="email"
+              data-testid="edit-input-email"
+              onChange={ this.handleChange }
+              value={ email }
+              placeholder="exemplo@exemplo.com"
+              className="form-field"
+            />
+          </label>
+          <label htmlFor="user-description">
+            Descrição
+            <textarea
+              id="user-description"
+              name="description"
+              data-testid="edit-input-description"
+              onChange={ this.handleChange }
+              value={ description }
+              placeholder="Exemplo Exemplo"
+              className="form-field"
+            />
+          </label>
+        </fieldset>
+        <Button
           disabled={ disabled }
           onClick={ this.handleClick }
-        >
-          Salvar
-        </button>
+          testId="edit-button-save"
+          text="Salvar"
+        />
       </form>
     );
   }
@@ -132,10 +140,10 @@ class ProfileEdit extends Component {
   render() {
     const { isLoading } = this.state;
     return (
-      <div data-testid="page-profile-edit">
+      <section data-testid="page-profile-edit" className="page-profile-edit page">
         <Header />
         { isLoading ? <Loading /> : this.renderForm() }
-      </div>
+      </section>
     );
   }
 }

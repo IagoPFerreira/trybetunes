@@ -10,6 +10,7 @@ class Button extends Component {
         disabled={ disabled }
         data-testid={ testId }
         onClick={ onClick }
+        className="button"
       >
         { text }
       </button>

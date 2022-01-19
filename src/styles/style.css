@@ -1,15 +1,318 @@
-body {
-  background-color: rgb(33, 33, 33);
-  color: rgb(230, 227, 227);
+/* ----------------- General ------------------ */
+* {
+  margin: 0;
+  padding: 0;
 }
 
-/* ----------------------------- Login -------------------------------- */
-.login-area {
+body {
+  background-color: rgb(19, 18, 18);
+  color: rgb(230, 227, 227);
+  height: 100%;
+}
+
+.page {
   align-items: center;
-  background-color: brown;
+  display: flex;
+  flex-flow: wrap column;
+  height: 100%;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.page .spinner {
+  background-color: rgba(175, 17, 17, 0.596);
+  margin: auto 95px;
+  padding: 30px;
+}
+
+.login-area, .search-area, .favorite-area {
+  align-items: center;
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
   margin: auto;
 }
+
+/* -------------------------------------------- */
+
+/* ------------------- Login ------------------ */
+.logo {
+  margin-bottom: 8%;
+  margin-top: -10%;
+  width: 15%;
+}
+
+.email-input, .search-input {
+  border: none;
+  border-radius: 5px;
+  font-size: 15pt;
+  margin: 20px;
+  padding: 10px;
+  width: 30%;
+}
+
+.button {
+  background-color: rgb(56, 174, 55);
+  border: none;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  font-size: 15pt;
+  height: 7%;
+  padding: 10px;
+  width: 15%;
+}
+
+.button:disabled {
+  background-color: rgb(58, 100, 57);
+}
+
+/* -------------------------------------------- */
+
+/* ------------------ Header ------------------ */
+.page header {
+  margin-top: 30px;
+}
+
+.header-component {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-around;
+  width: 50%;
+}
+
+.user-name {
+  color: rgb(212, 212, 212);
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 20pt;
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.nav-link {
+  color: rgb(202, 138, 18);
+  font-size: 15pt;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------- */
+
+/* ------------------ Albuns ------------------ */
+.page .album-card {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 0;
+  width: 80%;
+}
+
+.albuns-group {
+  display: flex;
+  flex-wrap: wrap;
+  height: 50%;
+  justify-content: space-around;
+}
+
+.album-link {
+  margin: 1%;
+  text-decoration: none;
+  width: 13%;
+}
+
+.mini-card {
+  align-items: center;
+  background-color: rgb(34, 33, 33);
+  border-radius: 10px;
+  color: rgb(212, 212, 212);
+  display: flex;
+  flex-direction: column;
+  height: 170px;
+  justify-content: space-around;
+  padding: 3px;
+}
+
+.mini-card h4 {
+  font-size: 10pt;
+  text-align: center;
+}
+
+.card-img {
+  border-radius: 5px;
+  height: 100px;
+  width: 60%;
+}
+
+.page-album .album-card .card-img {
+  width: 15%;
+}
+
+/* -------------------------------------------- */
+
+/* ------------------ Songs ------------------- */
+.songs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.song-card {
+  align-items: center;
+  background-color: rgb(31, 29, 29);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  justify-content: space-around;
+  margin-bottom: 2%;
+  padding: 1%;
+  width: 25%;
+}
+
+.song-card span {
+  font-size: 12pt;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+.heart-icon {
+  width: 37px;
+}
+
+/* -------------------------------------------- */
+
+/* ----------------- Profile ------------------ */
+.page-profile, .page-profile-edit {
+  height: 100vh;
+}
+
+.user-infos {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 11pt;
+  height: 60%;
+  justify-content: space-around;
+  width: 50%;
+}
+
+.user-image {
+  border-radius: 50%;
+  width: 90px;
+}
+
+.user-infos a {
+  color: rgb(12, 171, 235);
+  font-size: 16pt;
+  text-decoration: none;
+}
+
+/* -------------------------------------------- */
+
+/* --------------- Profile-Edit --------------- */
+.page-profile-edit header {
+  margin: 0;
+}
+
+.user-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.labels-container {
+  align-items: center;
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  height: 50%;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.user-form label {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  justify-content: space-around;
+  width: 35%;
+}
+
+.form-field {
+  border: none;
+  border-radius: 5px;
+  height: 20px;
+  padding: 5px;
+}
+
+.user-form label textarea {
+  height: 50px;
+}
+
+.user-form .button {
+  height: 12%;
+}
+
+/* -------------------------------------------- */
+
+/* ---------------- Not-Found ----------------- */
+.not-found-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 25pt;
+  height: 100vh;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.not-found-page p {
+  animation: pulse-black 2s infinite;
+  transform: scale(1);
+}
+
+@keyframes pulse-black {
+
+  0% {
+    color: rgb(190, 79, 156);
+    transform: scale(0.9);
+  }
+
+  25% {
+    color: rgb(127, 64, 143);
+  }
+
+  50% {
+    color: rgb(43, 45, 128);
+    transform: scale(1);
+  }
+
+  75% {
+    color: rgb(127, 64, 143);
+  }
+
+  100% {
+    color: rgb(190, 79, 156);
+    transform: scale(0.9);
+  }
+}
+
+/* -------------------------------------------- */
+
