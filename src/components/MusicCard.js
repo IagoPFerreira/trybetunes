@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import redHeart from '../images/redHeart.png';
 
 class MusicCard extends Component {
   constructor() {
@@ -37,12 +39,6 @@ class MusicCard extends Component {
     callback(music).then(() => this.setState({ isLoading: false }));
   }
 
-  // handleFavorite = ({ target: { checked } }) => {
-  //   this.setState({ checked });
-
-  //   return this.handleSong();
-  // }
-
   renderTrack = () => {
     const {
       props: { music: { trackName, previewUrl, trackId } },
@@ -50,7 +46,7 @@ class MusicCard extends Component {
     } = this;
 
     return (
-      <div>
+      <section className="song-card">
         <span>{trackName}</span>
         <audio data-testid="audio-component" src={ previewUrl } controls>
           <track kind="captions" />
@@ -62,7 +58,11 @@ class MusicCard extends Component {
           .
         </audio>
         <label data-testid={ `checkbox-music-${trackId}` } htmlFor={ trackName }>
-          Favorita
+          <img
+            src={ checked ? redHeart : whiteHeartIcon }
+            alt="set favorite"
+            className="heart-icon"
+          />
           <input
             type="checkbox"
             id={ trackName }
@@ -70,9 +70,10 @@ class MusicCard extends Component {
               ? this.handleSong(event, addSong)
               : this.handleSong(event, removeSong)) }
             checked={ checked }
+            hidden
           />
         </label>
-      </div>
+      </section>
     );
   }
 
