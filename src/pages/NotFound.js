@@ -7,7 +7,7 @@ class NotFound extends Component {
     const { history } = this.props;
     const timer = 4000;
     setTimeout(() => {
-      history.push('/search');
+      history.push('/trybetunes/search');
     }, timer);
     return (
       <div data-testid="page-not-found" className="not-found-page">

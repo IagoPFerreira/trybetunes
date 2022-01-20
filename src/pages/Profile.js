@@ -34,7 +34,7 @@ class Profile extends Component {
           data-testid="profile-image"
           className="user-image"
         />
-        <Link to="profile/edit">Editar perfil</Link>
+        <Link to="/trybetunes/profile/edit">Editar perfil</Link>
         <h2>{name}</h2>
         <h3>{email}</h3>
         <p>{description}</p>

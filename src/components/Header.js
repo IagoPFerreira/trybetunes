@@ -26,21 +26,21 @@ class Header extends Component {
         <h1 data-testid="header-user-name" className="user-name">{user.name}</h1>
         <nav className="navbar">
           <Link
-            to="/search"
+            to="/trybetunes/search"
             data-testid="link-to-search"
             className="nav-link"
           >
             Search
           </Link>
           <Link
-            to="/favorites"
+            to="/trybetunes/favorites"
             data-testid="link-to-favorites"
             className="nav-link"
           >
             Favorites
           </Link>
           <Link
-            to="/profile"
+            to="/trybetunes/profile"
             data-testid="link-to-profile"
             className="nav-link"
           >

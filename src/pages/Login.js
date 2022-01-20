@@ -71,7 +71,7 @@ class Login extends Component {
 
     if (isLoading) return <Loading />;
 
-    if (isRedirect) return <Redirect to="/search" />;
+    if (isRedirect) return <Redirect to="/trybetunes/search" />;
 
     return (
       this.renderForm()

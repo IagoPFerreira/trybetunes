@@ -59,7 +59,7 @@ class Search extends Component {
             .map(({ collectionId, artistName, collectionName, artworkUrl100 }) => (
               <Link
                 key={ collectionId }
-                to={ `/album/${collectionId}` }
+                to={ `/trybetunes/album/${collectionId}` }
                 data-testid={ `link-to-album-${collectionId}` }
                 className="album-link"
               >
