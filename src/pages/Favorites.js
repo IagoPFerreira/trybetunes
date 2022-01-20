@@ -42,11 +42,13 @@ class Favorites extends Component {
     const { musics } = this.state;
 
     if (musics) {
+      console.log(musics);
       return musics.map((music) => (
         <MusicCard
           key={ music.trackName }
           music={ music }
           onChange={ this.handleChange }
+          image={ music.artworkUrl100 }
         />
       ));
     }

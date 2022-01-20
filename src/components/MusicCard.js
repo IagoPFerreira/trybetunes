@@ -41,12 +41,12 @@ class MusicCard extends Component {
 
   renderTrack = () => {
     const {
-      props: { music: { trackName, previewUrl, trackId } },
+      props: { music: { trackName, previewUrl, trackId, collectionName }, image },
       state: { checked },
     } = this;
-
     return (
       <section className="song-card">
+        <img src={ image } alt={ collectionName } className="card-img" />
         <span>{trackName}</span>
         <audio data-testid="audio-component" src={ previewUrl } controls>
           <track kind="captions" />

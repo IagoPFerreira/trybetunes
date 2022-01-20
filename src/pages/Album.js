@@ -40,6 +40,7 @@ class Album extends Component {
   renderMusics = () => {
     const { musics } = this.state;
     if (musics) {
+      const { artworkUrl100 } = musics[0];
       return (
         musics
           .map((music, index) => {
@@ -47,6 +48,7 @@ class Album extends Component {
             return (index !== 0 && <MusicCard
               key={ trackName }
               music={ music }
+              image={ artworkUrl100 }
             />);
           })
       );
