@@ -135,6 +135,7 @@ body {
   flex-wrap: wrap;
   height: 50%;
   justify-content: space-around;
+  width: 100%;
 }
 
 .album-link {
