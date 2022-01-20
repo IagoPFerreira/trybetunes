@@ -67,7 +67,7 @@ class ProfileEdit extends Component {
 
     updateUser({ description, email, image, name });
 
-    history.push('/profile');
+    history.push('/trybetunes/profile');
   }
 
   renderForm = () => {

@@ -69,7 +69,13 @@ class Login extends Component {
   render() {
     const { isLoading, isRedirect } = this.state;
 
-    if (isLoading) return <Loading />;
+    if (isLoading) {
+      return (
+        <section className="transition-loading">
+          <Loading />
+        </section>
+      );
+    }
 
     if (isRedirect) return <Redirect to="/trybetunes/search" />;
 

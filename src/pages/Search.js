@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import AlbumCard from '../components/AlbumCard';
 import checkKey from '../services/checkKey';
+import logo from '../images/music.png';
 
 class Search extends Component {
   constructor() {
@@ -95,10 +96,15 @@ class Search extends Component {
   }
 
   render() {
-    const { isLoading, disabled, artistName } = this.state;
+    const { isLoading, disabled, artistName, artistAlbuns } = this.state;
 
     return (
       <section data-testid="page-search" className="search-area">
+        { !artistAlbuns && <img
+          src={ logo }
+          alt="Nota musical colorida dentro de um círculo branco"
+          className="logo"
+        />}
         <Header />
         <input
           value={ artistName }

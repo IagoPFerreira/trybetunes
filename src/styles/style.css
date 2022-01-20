@@ -1,3 +1,5 @@
+/* ---------------------------------- PC ----------------------------------- */
+
 /* ----------------- General ------------------ */
 * {
   margin: 0;
@@ -7,6 +9,7 @@
 body {
   background-color: rgb(19, 18, 18);
   color: rgb(230, 227, 227);
+  font-size: 14pt;
   height: 100%;
 }
 
@@ -28,12 +31,25 @@ body {
   margin: auto;
 }
 
+.transition-loading {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.transition-loading .spinner {
+  height: 120px;
+  width: 120px;
+}
+
 /* -------------------------------------------- */
 
 /* ------------------- Login ------------------ */
 .logo {
-  margin-bottom: 8%;
-  margin-top: -10%;
+  margin-bottom: 2%;
+  margin-top: 0;
   width: 15%;
 }
 
@@ -54,6 +70,7 @@ body {
   cursor: pointer;
   font-size: 15pt;
   height: 7%;
+  margin-bottom: 2%;
   padding: 10px;
   width: 15%;
 }
@@ -93,7 +110,7 @@ body {
 
 .nav-link {
   color: rgb(202, 138, 18);
-  font-size: 15pt;
+  font-size: 20pt;
   text-decoration: none;
 }
 
@@ -109,6 +126,7 @@ body {
   display: flex;
   justify-content: space-around;
   margin: 40px 0;
+  text-align: center;
   width: 80%;
 }
 
@@ -122,7 +140,7 @@ body {
 .album-link {
   margin: 1%;
   text-decoration: none;
-  width: 13%;
+  width: 14%;
 }
 
 .mini-card {
@@ -135,10 +153,6 @@ body {
   height: 170px;
   justify-content: space-around;
   padding: 3px;
-}
-
-.mini-card h4 {
-  font-size: 10pt;
   text-align: center;
 }
 
@@ -146,6 +160,19 @@ body {
   border-radius: 5px;
   height: 100px;
   width: 60%;
+}
+
+.card-title {
+  font-size: 16pt;
+}
+
+.card-text {
+  font-size: 8pt;
+  overflow-wrap: break-word;
+}
+
+.page-album .card-text {
+  font-size: 14pt;
 }
 
 .page-album .album-card .card-img {
@@ -174,7 +201,7 @@ body {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  height: 180px;
+  height: 250px;
   justify-content: space-around;
   margin-bottom: 2%;
   padding: 1%;
@@ -182,9 +209,12 @@ body {
 }
 
 .song-card span {
-  font-size: 12pt;
   overflow-wrap: break-word;
   text-align: center;
+}
+
+.song-card audio {
+  width: 95%;
 }
 
 .heart-icon {
@@ -257,6 +287,7 @@ body {
 .form-field {
   border: none;
   border-radius: 5px;
+  font-size: 12pt;
   height: 20px;
   padding: 5px;
 }
@@ -279,15 +310,17 @@ body {
   font-size: 25pt;
   height: 100vh;
   justify-content: space-around;
+  overflow-wrap: break-word;
+  text-align: center;
   width: 100%;
 }
 
 .not-found-page p {
-  animation: pulse-black 2s infinite;
+  animation: pulse-purple 2s infinite;
   transform: scale(1);
 }
 
-@keyframes pulse-black {
+@keyframes pulse-purple {
 
   0% {
     color: rgb(190, 79, 156);
@@ -315,3 +348,188 @@ body {
 
 /* -------------------------------------------- */
 
+/* ------------------------------------------------------------------------- */
+
+/* ----------------------------- Responsive -------------------------------- */
+
+@media screen and ( max-width : 1240px ) {
+
+  .album-link {
+    width: 18%;
+  }
+}
+
+@media screen and ( max-width : 1090px ) {
+
+  .album-link {
+    margin: 2%;
+    width: 20%;
+  }
+
+  .page-album .card-title {
+    font-size: 20pt;
+  }
+
+  .page-album .card-text {
+    font-size: 16pt;
+    width: 40%;
+  }
+
+  .song-card {
+    width: 35%;
+  }
+
+  .form-field {
+    height: 30px;
+    padding: 8px;
+  }
+}
+
+@media screen and ( max-width : 900px ) {
+
+  .album-link {
+    margin: 2%;
+    width: 20%;
+  }
+}
+
+@media screen and ( max-width : 870px ) {
+
+  .logo {
+    margin: 0;
+  }
+
+  .nav-link {
+    font-size: 20pt;
+  }
+
+  .email-input, .search-input {
+    font-size: 16pt;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .button {
+    height: 8%;
+    padding: 20px;
+    width: 20%;
+  }
+
+  .album-link {
+    margin: 2%;
+    width: 25%;
+  }
+
+  .song-card {
+    width: 40%;
+  }
+
+  .user-form .button {
+    height: 14%;
+  }
+}
+
+@media screen and ( max-width : 650px ) {
+
+  .logo {
+    width: 25%;
+  }
+
+  .header-component {
+    width: 100%;
+  }
+
+  .email-input, .search-input {
+    width: 50%;
+  }
+
+  .button {
+    width: 40%;
+  }
+
+  .album-link {
+    margin: 2%;
+    width: 28%;
+  }
+
+  .page-album .card-text {
+    font-size: 14pt;
+    width: 30%;
+  }
+
+  .song-card {
+    width: 70%;
+  }
+
+  .page-profile-edit {
+    flex-wrap: unset;
+    height: 115vh;
+  }
+
+  .user-form {
+    height: 77%;
+  }
+
+  .labels-container {
+    flex-direction: column;
+
+    /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
+    flex-wrap: unset;
+    height: 60%;
+  }
+
+  .user-form .button {
+    height: 11%;
+    padding: 18px;
+  }
+}
+
+@media screen and ( max-width : 550px ) {
+
+  .album-link {
+    margin: 2%;
+    width: 40%;
+  }
+
+  .album-card {
+    flex-wrap: wrap;
+  }
+
+  .page-album .album-card .card-img {
+    width: 30%;
+  }
+}
+
+@media screen and ( max-width : 450px ) {
+
+  .search-area h2 {
+    font-size: 14pt;
+  }
+
+  .album-link {
+    margin: 2%;
+    width: 60%;
+  }
+
+  .album-card {
+    height: 220px;
+  }
+
+  .page-album .card-text {
+    font-size: 14pt;
+    width: 48%;
+  }
+}
+
+@media screen and ( max-width : 350px ) {
+
+  .album-card {
+    height: 280px;
+  }
+
+  .card-title, .page-album .album-card .card-img {
+    width: 60%;
+  }
+}
+
+/* ------------------------------------------------------------------------- */
